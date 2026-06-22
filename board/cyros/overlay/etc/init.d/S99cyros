@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "[CyrOS] System initialization started"
+
+date > /tmp/cyros_boot_time
+
+echo "[CyrOS] Boot timestamp recorded"
