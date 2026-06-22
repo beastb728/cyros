@@ -2,6 +2,19 @@
 
 echo "[CyrOS] System initialization started"
 
-date > /tmp/cyros_boot_time
+TELEMETRY_FILE="/tmp/cyros_telemetry.log"
 
-echo "[CyrOS] Boot timestamp recorded"
+{
+    echo "===== CyrOS Telemetry ====="
+    echo "Timestamp: $(date)"
+    echo "Kernel: $(uname -r)"
+    echo "Architecture: $(uname -m)"
+    echo "Hostname: $(hostname)"
+    echo "CPU Count: $(nproc)"
+    echo "Memory:"
+    cat /proc/meminfo | grep MemTotal
+    echo "Uptime:"
+    uptime
+} > "$TELEMETRY_FILE"
+
+echo "[CyrOS] Telemetry written to $TELEMETRY_FILE"
