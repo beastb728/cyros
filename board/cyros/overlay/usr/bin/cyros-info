@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "================================="
+echo "            CyrOS"
+echo "Adaptive Gaming Operating System"
+echo "================================="
+echo
+
+echo "Kernel:"
+uname -r
+
+echo
+echo "Architecture:"
+uname -m
+
+echo
+echo "Uptime:"
+uptime
