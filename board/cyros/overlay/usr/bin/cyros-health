@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "===== CyrOS Health ====="
+
+echo "Memory:"
+grep MemTotal /proc/meminfo
+
+echo
+echo "Load:"
+cat /proc/loadavg
+
+echo
+echo "Processes:"
+ps | wc -l
+
