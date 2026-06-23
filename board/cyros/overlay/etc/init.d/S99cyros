@@ -2,6 +2,8 @@
 
 echo "[CyrOS] System initialization started"
 
-/usr/bin/cyros-telemetry
+/usr/bin/cyros-telemetryd &
+
+echo "[CyrOS] Telemetry daemon started"
 
 echo "[CyrOS] Initialization complete"

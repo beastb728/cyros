@@ -1,0 +1,27 @@
+#!/bin/sh
+
+LOG="/tmp/cyros_telemetry.log"
+
+while true
+do
+{
+    echo "========================================"
+    echo "Timestamp: $(date)"
+
+    echo "CPU Count:"
+    nproc
+
+    echo "Load Average:"
+    cat /proc/loadavg
+
+    echo "Memory:"
+    grep MemTotal /proc/meminfo
+
+    echo "Process Count:"
+    ps | wc -l
+
+    echo
+} >> "$LOG"
+
+sleep 5
+done
