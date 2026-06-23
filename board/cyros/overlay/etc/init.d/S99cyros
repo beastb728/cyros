@@ -4,6 +4,8 @@ echo "[CyrOS] System initialization started"
 
 TELEMETRY_FILE="/tmp/cyros_telemetry.log"
 
+echo "========================================" >> "$TELEMETRY_FILE"
+
 {
     echo "===== CyrOS Telemetry ====="
     echo "Timestamp: $(date)"
@@ -11,10 +13,23 @@ TELEMETRY_FILE="/tmp/cyros_telemetry.log"
     echo "Architecture: $(uname -m)"
     echo "Hostname: $(hostname)"
     echo "CPU Count: $(nproc)"
+
+    echo "CPU Model:"
+    grep "model name" /proc/cpuinfo | head -1
+
     echo "Memory:"
-    cat /proc/meminfo | grep MemTotal
+    grep MemTotal /proc/meminfo
+
+    echo "Load Average:"
+    cat /proc/loadavg
+
+    echo "Process Count:"
+    ps | wc -l
+
     echo "Uptime:"
     uptime
-} > "$TELEMETRY_FILE"
+
+    echo
+} >> "$TELEMETRY_FILE"
 
 echo "[CyrOS] Telemetry written to $TELEMETRY_FILE"
