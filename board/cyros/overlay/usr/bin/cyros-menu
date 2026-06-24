@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "===== CyrOS ====="
+echo "1. System Info"
+echo "2. Health"
+echo "3. Benchmark"
+
+read CHOICE
+
+case $CHOICE in
+    1) cyros-info ;;
+    2) cyros-health ;;
+    3) cyros-benchmark ;;
+    *) echo "Invalid option" ;;
+esac

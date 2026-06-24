@@ -1,0 +1,23 @@
+#!/bin/sh
+
+RESULTS="/tmp/cyros_benchmark.log"
+
+echo "===== CyrOS Benchmark ====="
+
+START=$(date +%s)
+
+i=0
+while [ $i -lt 100000 ]
+do
+    i=$((i + 1))
+done
+
+END=$(date +%s)
+
+TIME=$((END - START))
+
+echo "Timestamp: $(date)" >> "$RESULTS"
+echo "Loop Benchmark: ${TIME}s" >> "$RESULTS"
+echo "----------------------" >> "$RESULTS"
+
+echo "Benchmark completed in ${TIME}s"

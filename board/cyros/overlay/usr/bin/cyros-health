@@ -1,15 +1,23 @@
 #!/bin/sh
 
+TOTAL=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+AVAILABLE=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+
+USED=$((TOTAL - AVAILABLE))
+PERCENT=$((USED * 100 / TOTAL))
+
 echo "===== CyrOS Health ====="
 
-echo "Memory:"
-grep MemTotal /proc/meminfo
+echo "Memory Usage: ${PERCENT}%"
+echo "Used Memory: ${USED} kB"
+echo "Available Memory: ${AVAILABLE} kB"
 
 echo
-echo "Load:"
+
+echo "Load Average:"
 cat /proc/loadavg
 
 echo
-echo "Processes:"
-ps | wc -l
 
+echo "Process Count:"
+ps | wc -l
