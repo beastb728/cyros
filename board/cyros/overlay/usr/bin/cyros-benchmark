@@ -4,20 +4,49 @@ RESULTS="/tmp/cyros_benchmark.log"
 
 echo "===== CyrOS Benchmark ====="
 
-START=$(date +%s)
+#
+# CPU Benchmark
+#
+
+CPU_START=$(date +%s)
 
 i=0
-while [ $i -lt 100000 ]
+while [ $i -lt 500000 ]
 do
     i=$((i + 1))
 done
 
-END=$(date +%s)
+CPU_END=$(date +%s)
+CPU_TIME=$((CPU_END - CPU_START))
 
-TIME=$((END - START))
+#
+# IO Benchmark
+#
 
-echo "Timestamp: $(date)" >> "$RESULTS"
-echo "Loop Benchmark: ${TIME}s" >> "$RESULTS"
-echo "----------------------" >> "$RESULTS"
+IO_START=$(date +%s)
 
-echo "Benchmark completed in ${TIME}s"
+dd if=/dev/zero of=/tmp/benchmark.bin bs=1K count=5000 >/dev/null 2>&1
+
+IO_END=$(date +%s)
+IO_TIME=$((IO_END - IO_START))
+
+rm -f /tmp/benchmark.bin
+
+#
+# Score
+#
+
+SCORE=$((1000 / (CPU_TIME + IO_TIME + 1)))
+
+{
+    echo "Timestamp: $(date)"
+    echo "CPU Benchmark: ${CPU_TIME}s"
+    echo "IO Benchmark: ${IO_TIME}s"
+    echo "CyrOS Score: ${SCORE}"
+    echo "----------------------"
+} >> "$RESULTS"
+
+echo
+echo "CPU Benchmark : ${CPU_TIME}s"
+echo "IO Benchmark  : ${IO_TIME}s"
+echo "CyrOS Score   : ${SCORE}"

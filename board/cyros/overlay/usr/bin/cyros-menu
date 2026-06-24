@@ -4,6 +4,8 @@ echo "===== CyrOS ====="
 echo "1. System Info"
 echo "2. Health"
 echo "3. Benchmark"
+echo "4. Benchmark History"
+echo "5. Current Profile"
 
 read CHOICE
 
@@ -11,5 +13,7 @@ case $CHOICE in
     1) cyros-info ;;
     2) cyros-health ;;
     3) cyros-benchmark ;;
+    4) cyros-scores ;;
+    5) cyros-profile ;;
     *) echo "Invalid option" ;;
 esac

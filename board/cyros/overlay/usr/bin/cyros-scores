@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "===== CyrOS Benchmark History ====="
+
+cat /tmp/cyros_benchmark.log
+

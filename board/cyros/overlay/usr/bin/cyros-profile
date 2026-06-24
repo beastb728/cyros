@@ -1,0 +1,29 @@
+#!/bin/sh
+
+PROFILE_FILE="/tmp/cyros_profile"
+
+if [ $# -eq 0 ]
+then
+    if [ -f "$PROFILE_FILE" ]
+    then
+        echo "Current Profile: $(cat $PROFILE_FILE)"
+    else
+        echo "Current Profile: balanced"
+    fi
+
+    exit 0
+fi
+
+case "$1" in
+    performance|balanced|powersave)
+        echo "$1" > "$PROFILE_FILE"
+        echo "Profile set to: $1"
+        ;;
+    *)
+        echo "Usage:"
+        echo "  cyros-profile performance"
+        echo "  cyros-profile balanced"
+        echo "  cyros-profile powersave"
+        exit 1
+        ;;
+esac
