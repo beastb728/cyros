@@ -11,6 +11,12 @@ do
     echo "CPU Count:"
     nproc
 
+    echo "Available Memory:"
+    grep MemAvailable /proc/meminfo
+
+    echo "CPU Statistics:"
+    head -1 /proc/stat
+
     echo "Load Average:"
     cat /proc/loadavg
 
