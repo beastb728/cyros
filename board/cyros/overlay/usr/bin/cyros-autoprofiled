@@ -1,0 +1,16 @@
+#!/bin/sh
+
+while true
+do
+    if [ -f /tmp/cyros_recommendation ]
+    then
+        RECOMMENDATION=$(cat /tmp/cyros_recommendation)
+
+        if [ "$RECOMMENDATION" != "" ]
+        then
+            echo "$RECOMMENDATION" > /etc/cyros/default_profile
+        fi
+    fi
+
+    sleep 15
+done

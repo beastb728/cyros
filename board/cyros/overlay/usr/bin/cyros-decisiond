@@ -1,0 +1,25 @@
+#!/bin/sh
+
+while true
+do
+    AVAILABLE=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+
+    LOAD=$(cut -d' ' -f1 /proc/loadavg)
+    LOAD_INT=$(echo "$LOAD" | cut -d'.' -f1)
+
+    if [ "$AVAILABLE" -lt 50000 ]
+    then
+        RECOMMENDATION="performance"
+
+    elif [ "$LOAD_INT" -eq 0 ]
+    then
+        RECOMMENDATION="powersave"
+
+    else
+        RECOMMENDATION="balanced"
+    fi
+
+    echo "$RECOMMENDATION" > /tmp/cyros_recommendation
+
+    sleep 10
+done

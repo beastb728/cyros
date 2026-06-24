@@ -1,0 +1,39 @@
+#!/bin/sh
+
+PROFILE=$(cat /etc/cyros/default_profile)
+
+echo "===== CyrOS Status ====="
+
+echo "Current Profile:"
+echo "$PROFILE"
+
+echo
+
+echo "Recommended Profile:"
+if [ -f /tmp/cyros_recommendation ]
+then
+    cat /tmp/cyros_recommendation
+else
+    echo "unknown"
+fi
+echo
+
+echo "Memory Usage:"
+cyros-health | grep "Memory Usage"
+
+echo
+
+echo "Decision Engine:"
+echo "Running"
+
+echo
+echo "Available Memory:"
+grep MemAvailable /proc/meminfo
+
+echo
+echo "Load Average:"
+cat /proc/loadavg
+
+echo
+echo "AutoProfile:"
+echo "Enabled"

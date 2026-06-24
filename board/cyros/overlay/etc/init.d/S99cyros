@@ -3,7 +3,11 @@
 echo "[CyrOS] System initialization started"
 
 /usr/bin/cyros-telemetryd &
+/usr/bin/cyros-decisiond &
+/usr/bin/cyros-autoprofiled &
 
 echo "[CyrOS] Telemetry daemon started"
+echo "[CyrOS] Decision engine started"
+echo "[CyrOS] AutoProfile engine started"
 
 echo "[CyrOS] Initialization complete"
